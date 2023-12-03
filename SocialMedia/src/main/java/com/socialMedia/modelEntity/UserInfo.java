@@ -1,5 +1,8 @@
 package com.socialMedia.modelEntity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -15,14 +18,25 @@ public class UserInfo {
 	private String	lastName;
 	private String	email;
 	private String	password;
+	private List<Integer> followers = new ArrayList<>();
+	private List<Integer> following = new ArrayList<>();
 	
-	public UserInfo(Integer id, String firstName, String lastName, String email, String password) {
-		super();
-		this.id = id;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-		this.password = password;
+	
+	
+	public List<Integer> getFollowers() {
+		return followers;
+	}
+
+	public void setFollowers(List<Integer> followers) {
+		this.followers = followers;
+	}
+
+	public List<Integer> getFollowing() {
+		return following;
+	}
+
+	public void setFollowing(List<Integer> following) {
+		this.following = following;
 	}
 
 	public Integer getId() {
