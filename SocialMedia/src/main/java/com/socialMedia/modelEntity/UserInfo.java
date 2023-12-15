@@ -3,8 +3,13 @@ package com.socialMedia.modelEntity;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -12,17 +17,28 @@ import jakarta.persistence.Table;
 public class UserInfo {
 
 	@Id
-//	@GeneratedValue(strategy = GenerationType.SEQUENCE) we will use this as per the Tutorial
+	@GeneratedValue(strategy = GenerationType.AUTO) 
 	private Integer id;
 	private String	firstName;
 	private String	lastName;
 	private String	email;
 	private String	password;
 	private List<Integer> followers = new ArrayList<>();
-	private List<Integer> following = new ArrayList<>();
+	private List<Integer> following = new ArrayList<>();	
 	
+	@JsonIgnore
+	@ManyToMany		//all the posts can be saved by all the users 
+	private List<Post>    savedPost = new ArrayList<>();		
 	
-	
+
+	public List<Post> getSavedPost() {
+		return savedPost;
+	}
+
+	public void setSavedPost(List<Post> savedPost) {
+		this.savedPost = savedPost;
+	}
+
 	public List<Integer> getFollowers() {
 		return followers;
 	}
